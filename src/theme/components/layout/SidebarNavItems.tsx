@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 import { MenuSection } from '@/theme/types';
 import { BaseIcon } from '../base-icon/BaseIcon';
-import { usePathname } from 'next/navigation';
 
 interface Props {
     item: MenuSection;
@@ -17,33 +17,59 @@ const SidebarNavItem: React.FC<Props> = ({ item, depth = 0, collapsed }) => {
     const pathname = usePathname();
     const children = item.children ?? [];
     const hasChildren = children.length > 0;
+
     const [open, setOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
     const isCurrent = item.path === pathname;
     const isChildActive = hasChildren && children.some(child => child.path === pathname);
     const isActive = isCurrent || isChildActive;
-
     useEffect(() => {
         if (isActive && hasChildren) setOpen(true);
     }, [isActive, hasChildren]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const handleClick = () => {
+        if (hasChildren) {
+            setOpen(prev => !prev);
+        }
+    };
+
     return (
-        <div>
+        <div ref={containerRef} className="relative">
             <div
                 className={clsx(
                     'flex items-center gap-2 cursor-pointer !p-3 transition-all rounded-xl border-2',
                     depth > 0 && 'pl-6',
                     isActive ? 'border-[var(--color-text-neutral7)]' : 'border-transparent hover:bg-gray-100',
-                    collapsed && 'justify-center'
+                    collapsed ? 'justify-center' : 'justify-start'
                 )}
-                onClick={() => hasChildren && setOpen(!open)}
+                onClick={!collapsed ? handleClick : undefined}
             >
-                {item.icon && React.isValidElement(item.icon) && (
-                    <span className="flex-shrink-0 items-center justify-center">
-                        {React.cloneElement(item.icon as React.ReactElement<{ color?: string }>, {
-                            color: isActive ? 'var(--color-primary)' : 'var(--color-text-neutral4)',
-                        })}
-                    </span>
-                )}
+                {item.icon &&
+                    React.isValidElement(item.icon) &&
+                    (collapsed && item.path ? (
+                        <Link href={item.path}>
+                            {React.cloneElement(item.icon as React.ReactElement<{ color?: string }>, {
+                                color: isActive ? 'var(--color-primary)' : 'var(--color-text-neutral4)',
+                            })}
+                        </Link>
+                    ) : (
+                        <span onClick={collapsed ? handleClick : undefined}>
+                            {React.cloneElement(item.icon as React.ReactElement<{ color?: string }>, {
+                                color: isActive ? 'var(--color-primary)' : 'var(--color-text-neutral4)',
+                            })}
+                        </span>
+                    ))}
                 {!collapsed && (
                     <>
                         {item.path ? (
@@ -96,20 +122,44 @@ const SidebarNavItem: React.FC<Props> = ({ item, depth = 0, collapsed }) => {
                                             : 'text-[var(--color-text-neutral4)]'
                                     )}
                                 >
-                                    {child.icon && React.isValidElement(child.icon) && (
-                                        <span className="flex-shrink-0">
-                                            {React.cloneElement(child.icon as React.ReactElement<{ color?: string }>, {
-                                                color: childActive
-                                                    ? 'var(--color-primary)'
-                                                    : 'var(--color-text-neutral4)',
-                                            })}
-                                        </span>
-                                    )}
+                                    {child.icon &&
+                                        React.cloneElement(child.icon as React.ReactElement<{ color?: string }>, {
+                                            color: childActive ? 'var(--color-primary)' : 'var(--color-text-neutral4)',
+                                        })}
                                     <span>{child.label}</span>
                                 </div>
                             </Link>
                         );
                     })}
+                </div>
+            )}
+            {collapsed && hasChildren && open && (
+                <div className="absolute left-full top-0 z-50">
+                    <div className="bg-white shadow-lg rounded-md !p-2 min-w-max">
+                        {children.map(child => {
+                            const childActive = pathname === child.path;
+                            return (
+                                <Link key={child.key} href={child.path}>
+                                    <div
+                                        className={clsx(
+                                            'flex items-center gap-2 p-1 hover:bg-gray-100 rounded cursor-pointer !my-1',
+                                            childActive
+                                                ? 'text-[var(--color-primary)]'
+                                                : 'text-[var(--color-text-neutral4)]'
+                                        )}
+                                    >
+                                        {child.icon &&
+                                            React.cloneElement(child.icon as React.ReactElement<{ color?: string }>, {
+                                                color: childActive
+                                                    ? 'var(--color-primary)'
+                                                    : 'var(--color-text-neutral4)',
+                                            })}
+                                        <span>{child.label}</span>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
                 </div>
             )}
         </div>

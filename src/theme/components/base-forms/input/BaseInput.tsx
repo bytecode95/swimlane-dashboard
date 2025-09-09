@@ -25,7 +25,7 @@ const BaseSearch: React.FC<BaseSearchProps> = ({
     icon,
     value,
     onChange,
-    bgColor = 'var(--color-text-neutral8)/10',
+    bgColor = 'bg-[var(--color-text-neutral7)]',
     textColor = 'var(--color-text-neutral1)',
     fullWidth = true,
     className,
@@ -39,8 +39,13 @@ const BaseSearch: React.FC<BaseSearchProps> = ({
 
     return (
         <div
-            className={clsx('flex items-center gap-2 px-3', fullWidth && 'w-full', rounded && 'rounded-md', className)}
-            style={{ backgroundColor: bgColor }}
+            className={clsx(
+                'flex items-center gap-2 px-3',
+                fullWidth && 'w-full',
+                rounded && 'rounded-md',
+                bgColor,
+                className
+            )}
         >
             {renderIcon() && <span className="flex-shrink-0">{renderIcon()}</span>}
             <input
@@ -48,7 +53,7 @@ const BaseSearch: React.FC<BaseSearchProps> = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={clsx('flex-1 bg-transparent outline-none text-sm', textColor && `text-[${textColor}]`)}
+                className={clsx('flex-1  outline-none text-sm', bgColor, textColor && `text-[${textColor}]`)}
             />
         </div>
     );

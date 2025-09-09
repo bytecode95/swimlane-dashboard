@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             <div className="flex items-center justify-center h-20 px-4">
                 <AppLogo collapsed={collapsed} />
             </div>
-            <div className="absolute -right-4 top-20 transform -translate-y-1/2">
+            <div className="absolute -right-4 top-20 transform -translate-y-1/2 z-20">
                 <BaseButton
                     onClick={onToggle}
                     iconName={collapsed ? 'Collapsed' : 'Expand'}
