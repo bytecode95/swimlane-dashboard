@@ -6,7 +6,7 @@ import tasksData from '@/lib/mock/tasks.json';
 interface TaskState {
     tasks: Task[];
     setTasks: (tasks: Task[]) => void;
-    moveTask: (taskId: string, newStatus: TaskStatus) => void;
+    moveTask: (taskId: string, newStatus: TaskStatus, position?: number) => void;
 }
 
 const STORAGE_KEY = 'swimlane_tasks';
@@ -18,21 +18,26 @@ export const useTaskStore = create<TaskState>()(
             set({ tasks });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
         },
-        moveTask: (taskId: string, newStatus: TaskStatus, newIndex?: number) =>
+        moveTask: (taskId, newStatus: TaskStatus, position?: number) =>
             set(state => {
                 const task = state.tasks.find(t => t.id === taskId);
                 if (!task) return { tasks: state.tasks };
-                let newTasks = state.tasks.filter(t => t.id !== taskId);
-                const updatedTask = { ...task, status: newStatus };
 
-                if (typeof newIndex === 'number') {
-                    newTasks.splice(newIndex, 0, updatedTask);
+                const updatedTask = { ...task, status: newStatus };
+                let newTasks = state.tasks.filter(t => t.id !== taskId);
+                const before = newTasks.filter(t => t.status !== newStatus);
+                const targetColumn = newTasks.filter(t => t.status === newStatus);
+                if (typeof position === "number") {
+                    targetColumn.splice(position, 0, updatedTask);
                 } else {
-                    newTasks.push(updatedTask);
+                    targetColumn.push(updatedTask);
                 }
+
+                newTasks = [...before, ...targetColumn];
 
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(newTasks));
                 return { tasks: newTasks };
             }),
+
     }))
 );

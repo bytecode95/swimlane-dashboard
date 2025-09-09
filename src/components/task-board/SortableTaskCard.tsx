@@ -11,12 +11,13 @@ interface SortableTaskCardProps {
 }
 
 const SortableTaskCard: React.FC<SortableTaskCardProps> = ({ task }) => {
-    const { attributes, listeners, setNodeRef, transform, isDragging } = useSortable({ id: task.id });
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: task.id });
 
     const style = {
-        transform: transform ? CSS.Transform.toString(transform) : undefined,
-        transition: transform ? 'transform 200ms ease' : undefined,
-        zIndex: isDragging ? 50 : 'auto',
+        transform: CSS.Transform.toString(transform),
+        transition: isDragging ? 'none' : transition || 'transform 250ms ease',
+        zIndex: isDragging ? 999 : 'auto',
+        opacity: isDragging ? 0.8 : 1,
     };
 
     return (

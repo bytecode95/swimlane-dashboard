@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import TaskCard from './TaskCard';
 import { STATUS_CONFIG, StatusKey } from '@/types';
 import { Task } from '@/store/types/task.types';
 import BaseTag from '@/theme/components/base-tag/BaseTag';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import SortableTaskCard from './SortableTaskCard';
+import { useDroppable } from '@dnd-kit/core';
 
 interface TaskColumnProps {
     status: StatusKey;
@@ -15,9 +15,10 @@ interface TaskColumnProps {
 
 const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
     const statusConfig = STATUS_CONFIG[status];
+    const { setNodeRef } = useDroppable({ id: status });
 
     return (
-        <>
+        <div className="flex flex-col w-72 ">
             <div className="sticky top-0 z-10 !p-2 bg-white flex items-center justify-center">
                 <BaseTag
                     text={statusConfig.text}
@@ -26,10 +27,10 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
                     roundedClass="rounded-full"
                 />
             </div>
-            <div className="flex flex-col w-72 !p-2 bg-[var(--color-text-neutral6)] rounded-md min-h-[400px]">
+            <div ref={setNodeRef} className="bg-[var(--color-text-neutral6)] !p-2">
                 {tasks.length > 0 ? (
                     <SortableContext items={tasks.map(t => t.id)} strategy={verticalListSortingStrategy}>
-                        <div className="flex flex-col gap-2 mt-2">
+                        <div className="flex flex-col gap-2 p-2">
                             {tasks.map(task => (
                                 <SortableTaskCard key={task.id} task={task} />
                             ))}
@@ -39,7 +40,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
                     <p className="text-center text-gray-400 text-sm mt-4">No tasks available</p>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
