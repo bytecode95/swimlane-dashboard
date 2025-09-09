@@ -42,7 +42,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
             onClick={onClick}
             disabled={disabled}
             className={clsx(
-                'flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-medium ',
+                'flex items-center gap-2 py-2 px-4 rounded-lg text-sm font-medium cursor-pointer',
                 fullWidth && 'w-full',
                 className
             )}

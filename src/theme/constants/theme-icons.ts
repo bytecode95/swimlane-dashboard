@@ -12,6 +12,7 @@ export type IconName =
     | 'ArrowUp'
     | 'DownArrow'
     | 'Add'
+    | 'Edit'
 
 export interface IconProps {
     size?: number | string;

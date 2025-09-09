@@ -8,6 +8,7 @@ import {
     RiCalendarLine,
     RiChat3Line,
     RiDashboardLine,
+    RiEditLine,
     RiFolderLine,
     RiInformationLine,
     RiLogoutCircleLine,
@@ -32,6 +33,7 @@ const iconMap: Record<IconName, ComponentType<IconProps>> = {
     ArrowUp: RiArrowDropUpLine,
     DownArrow: RiArrowDropDownLine,
     Add: RiAddLine,
+    Edit: RiEditLine,
 };
 
 interface IconComponentProps extends IconProps {
