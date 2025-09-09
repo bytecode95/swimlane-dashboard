@@ -27,7 +27,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
 
             <div className="flex flex-col flex-1">
                 <TopBar onToggleSidebar={() => setCollapsed(!collapsed)} />
-                <main className="flex-1 p-4 overflow-y-auto z-10">{children}</main>
+                <main className="flex-1 p-4  z-10">{children}</main>
             </div>
         </div>
     );

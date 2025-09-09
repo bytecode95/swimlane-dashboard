@@ -20,7 +20,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
                 <p className="text-xs text-[var(--color-text-neutral4)]">{task.category}</p>
             </div>
             <div className="flex justify-between items-start mb-2">
-                <h4 className="text-sm font-medium text-black">{task.title}</h4>
+                <h4 className="text-sm !font-medium text-black">{task.title}</h4>
                 <BaseTag
                     text={task.priority}
                     bgClass="bg-[var(--color-text-neutral6)]"
@@ -29,7 +29,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
                 />
             </div>
 
-            <div className="flex items-center -space-x-2">
+            <div className="flex items-center -space-x-2 !mt-2">
                 {task.assigned.map(user => (
                     <BaseAvatar key={user.id} src={user.src} size={24} />
                 ))}

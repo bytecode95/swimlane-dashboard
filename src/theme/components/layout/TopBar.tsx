@@ -13,7 +13,7 @@ export const TopBar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
     const setSearchQuery = useTaskStore(state => state.setSearchQuery);
 
     return (
-        <header className="sticky top-0 bg-white border-b border-[color:var(--color-text-neutral8)] h-20 flex items-center justify-end px-4 z-10">
+        <header className="sticky top-0 bg-white border-b border-[color:var(--color-text-neutral8)] h-20 flex items-center justify-end !p-3 z-10">
             <div className="flex items-center gap-4 ml-auto !mr-4">
                 <BaseButton
                     text="Create New Board"

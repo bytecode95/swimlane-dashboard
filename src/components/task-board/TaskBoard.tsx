@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import {
     DndContext,
     closestCenter,
@@ -22,6 +22,7 @@ const TaskBoard: React.FC = () => {
     const tasks = useTaskStore(state => state.tasks);
     const searchQuery = useTaskStore(state => state.searchQuery);
     const moveTask = useTaskStore(state => state.moveTask);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const filteredTasks = useMemo(() => {
         const lowerQuery = searchQuery.toLowerCase();
@@ -64,14 +65,17 @@ const TaskBoard: React.FC = () => {
     };
 
     return (
-        <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
+        <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto px-4 pb-4 h-[calc(100vh-100px)] overflow-y-auto scroll-smooth"
         >
-            <div className="overflow-y-auto h-[calc(100vh-100px)] p-4">
-                <div className="flex gap-4 min-w-max">
+            <div className="flex gap-6 min-w-max">
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                >
                     {STATUS_KEYS.map(status => (
                         <TaskColumn
                             key={status}
@@ -79,10 +83,10 @@ const TaskBoard: React.FC = () => {
                             tasks={filteredTasks.filter(t => t.status === status)}
                         />
                     ))}
-                </div>
+                    <DragOverlay>{activeTask ? <TaskCard task={activeTask} /> : null}</DragOverlay>
+                </DndContext>
             </div>
-            <DragOverlay>{activeTask ? <TaskCard task={activeTask} /> : null}</DragOverlay>
-        </DndContext>
+        </div>
     );
 };
 

@@ -12,14 +12,15 @@ import { BaseIcon } from '@/theme';
 interface TaskColumnProps {
     status: StatusKey;
     tasks: Task[];
+    className?: string;
 }
 
-const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
+const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks, className }) => {
     const statusConfig = STATUS_CONFIG[status];
     const { setNodeRef } = useDroppable({ id: status });
 
     return (
-        <div className="flex flex-col w-72 ">
+        <div className={`flex flex-col w-72 ${className || ''}`}>
             <div className="sticky top-0 z-10 !p-2 bg-white flex items-center justify-between">
                 <BaseTag
                     text={statusConfig.text}
@@ -32,7 +33,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
                     <BaseIcon name="More" color="var(--color-text-neutral3)" />
                 </div>
             </div>
-            <div ref={setNodeRef} className="bg-[var(--color-text-neutral6)] !p-3">
+            <div ref={setNodeRef} className="bg-[var(--color-text-neutral7)] !p-3">
                 {tasks.length > 0 ? (
                     <SortableContext items={tasks.map(t => t.id)} strategy={verticalListSortingStrategy}>
                         <div className="flex flex-col gap-2 p-2">
