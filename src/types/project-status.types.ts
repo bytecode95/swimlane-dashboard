@@ -9,7 +9,7 @@ export interface StatusConfig {
 export const STATUS_CONFIG: Record<StatusKey, StatusConfig> = {
     todo: {
         text: 'To Do',
-        bgClass: 'bg-[var(--color-neutral6)]',
+        bgClass: 'bg-[var(--color-text-neutral6)]',
         textClass: 'text-[var(--color-text-neutral3)]',
     },
     inProgress: {

@@ -1,0 +1,231 @@
+[
+    {
+        "id": "1",
+        "title": "Design Landing Page",
+        "category": "Design",
+        "status": "todo",
+        "assigned": [
+            { "id": "u1", "src": "/avatar1.png" },
+            { "id": "u2", "src": "/avatar2.png" }
+        ],
+        "attachments": 3,
+        "comments": 5,
+        "dueDate": "2025-09-15",
+        "priority": "high"
+    },
+    {
+        "id": "2",
+        "title": "Implement Auth",
+        "category": "Development",
+        "status": "inProgress",
+        "assigned": [{ "id": "u3", "src": "/avatar3.png" }],
+        "attachments": 0,
+        "comments": 2,
+        "dueDate": "2025-09-20",
+        "priority": "medium"
+    },
+    {
+        "id": "3",
+        "title": "UX Research for Homepage",
+        "category": "UX Research",
+        "status": "todo",
+        "assigned": [{ "id": "u4", "src": "/avatar4.png" }],
+        "attachments": 2,
+        "comments": 1,
+        "dueDate": "2025-09-18",
+        "priority": "medium"
+    },
+    {
+        "id": "4",
+        "title": "Prepare Product Presentation",
+        "category": "Presentation",
+        "status": "inProgress",
+        "assigned": [{ "id": "u2", "src": "/avatar2.png" }],
+        "attachments": 1,
+        "comments": 3,
+        "dueDate": "2025-09-22",
+        "priority": "low"
+    },
+    {
+        "id": "5",
+        "title": "UI Mockup for Dashboard",
+        "category": "UI/UX",
+        "status": "todo",
+        "assigned": [
+            { "id": "u1", "src": "/avatar1.png" },
+            { "id": "u3", "src": "/avatar3.png" }
+        ],
+        "attachments": 4,
+        "comments": 2,
+        "dueDate": "2025-09-25",
+        "priority": "high"
+    },
+    {
+        "id": "6",
+        "title": "Feedback Analysis for App",
+        "category": "Feedback",
+        "status": "done",
+        "assigned": [{ "id": "u5", "src": "/avatar5.png" }],
+        "attachments": 1,
+        "comments": 0,
+        "dueDate": "2025-09-17",
+        "priority": "low"
+    },
+    {
+        "id": "7",
+        "title": "Research Competitor UX",
+        "category": "UX Research",
+        "status": "todo",
+        "assigned": [{ "id": "u4", "src": "/avatar4.png" }],
+        "attachments": 0,
+        "comments": 1,
+        "dueDate": "2025-09-19",
+        "priority": "medium"
+    },
+    {
+        "id": "8",
+        "title": "Landing Page Prototype",
+        "category": "Design",
+        "status": "inProgress",
+        "assigned": [
+            { "id": "u1", "src": "/avatar1.png" },
+            { "id": "u2", "src": "/avatar2.png" }
+        ],
+        "attachments": 2,
+        "comments": 3,
+        "dueDate": "2025-09-21",
+        "priority": "high"
+    },
+    {
+        "id": "9",
+        "title": "Prepare Client Presentation",
+        "category": "Presentation",
+        "status": "todo",
+        "assigned": [{ "id": "u3", "src": "/avatar3.png" }],
+        "attachments": 1,
+        "comments": 0,
+        "dueDate": "2025-09-24",
+        "priority": "medium"
+    },
+    {
+        "id": "10",
+        "title": "UI Component Library Update",
+        "category": "UI/UX",
+        "status": "done",
+        "assigned": [{ "id": "u5", "src": "/avatar5.png" }],
+        "attachments": 3,
+        "comments": 1,
+        "dueDate": "2025-09-16",
+        "priority": "high"
+    },
+    {
+        "id": "11",
+        "title": "Research New Feedback Tools",
+        "category": "Feedback",
+        "status": "todo",
+        "assigned": [{ "id": "u2", "src": "/avatar2.png" }],
+        "attachments": 0,
+        "comments": 1,
+        "dueDate": "2025-09-20",
+        "priority": "medium"
+    },
+    {
+        "id": "12",
+        "title": "UX Research Report",
+        "category": "UX Research",
+        "status": "inProgress",
+        "assigned": [{ "id": "u4", "src": "/avatar4.png" }],
+        "attachments": 2,
+        "comments": 2,
+        "dueDate": "2025-09-22",
+        "priority": "high"
+    },
+    {
+        "id": "13",
+        "title": "Design Icon Set",
+        "category": "Design",
+        "status": "done",
+        "assigned": [{ "id": "u1", "src": "/avatar1.png" }],
+        "attachments": 5,
+        "comments": 4,
+        "dueDate": "2025-09-18",
+        "priority": "medium"
+    },
+    {
+        "id": "14",
+        "title": "Update UX Guidelines",
+        "category": "UX Research",
+        "status": "todo",
+        "assigned": [{ "id": "u3", "src": "/avatar3.png" }],
+        "attachments": 1,
+        "comments": 1,
+        "dueDate": "2025-09-23",
+        "priority": "low"
+    },
+    {
+        "id": "15",
+        "title": "Feedback Dashboard UI",
+        "category": "UI/UX",
+        "status": "inProgress",
+        "assigned": [{ "id": "u5", "src": "/avatar5.png" }],
+        "attachments": 2,
+        "comments": 2,
+        "dueDate": "2025-09-25",
+        "priority": "high"
+    },
+    {
+        "id": "16",
+        "title": "Prepare Marketing Presentation",
+        "category": "Presentation",
+        "status": "todo",
+        "assigned": [{ "id": "u1", "src": "/avatar1.png" }],
+        "attachments": 0,
+        "comments": 0,
+        "dueDate": "2025-09-26",
+        "priority": "medium"
+    },
+    {
+        "id": "17",
+        "title": "Review App Feedback",
+        "category": "Feedback",
+        "status": "done",
+        "assigned": [{ "id": "u2", "src": "/avatar2.png" }],
+        "attachments": 1,
+        "comments": 3,
+        "dueDate": "2025-09-21",
+        "priority": "low"
+    },
+    {
+        "id": "18",
+        "title": "Prototype Mobile Layout",
+        "category": "UI/UX",
+        "status": "todo",
+        "assigned": [{ "id": "u3", "src": "/avatar3.png" }],
+        "attachments": 4,
+        "comments": 2,
+        "dueDate": "2025-09-28",
+        "priority": "high"
+    },
+    {
+        "id": "19",
+        "title": "Research User Behavior",
+        "category": "UX Research",
+        "status": "inProgress",
+        "assigned": [{ "id": "u4", "src": "/avatar4.png" }],
+        "attachments": 2,
+        "comments": 1,
+        "dueDate": "2025-09-29",
+        "priority": "medium"
+    },
+    {
+        "id": "20",
+        "title": "Design Dashboard Charts",
+        "category": "Design",
+        "status": "todo",
+        "assigned": [{ "id": "u1", "src": "/avatar1.png" }],
+        "attachments": 3,
+        "comments": 2,
+        "dueDate": "2025-10-01",
+        "priority": "high"
+    }
+]

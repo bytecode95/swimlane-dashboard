@@ -13,6 +13,9 @@ export type IconName =
     | 'DownArrow'
     | 'Add'
     | 'Edit'
+    | 'FlashLight'
+    | 'Links'
+    | 'Rectangle'
 
 export interface IconProps {
     size?: number | string;
