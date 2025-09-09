@@ -1,7 +1,6 @@
 'use client';
-
-import MajorKanbanBoard from '@/components/kanaban-view/MajorKanbanBoard';
 import { PageLayout } from '@/components/page-layout/PageLayout';
+import TaskBoard from '@/components/task-board/TaskBoard';
 
 export default function Page() {
     return (
@@ -18,7 +17,7 @@ export default function Page() {
             lastUpdated="04 April 2022"
         >
             <>
-                <MajorKanbanBoard />
+                <TaskBoard />
             </>
         </PageLayout>
     );

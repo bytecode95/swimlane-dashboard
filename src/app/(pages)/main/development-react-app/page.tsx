@@ -1,6 +1,4 @@
 'use client';
-
-import MajorKanbanBoard from '@/components/kanaban-view/MajorKanbanBoard';
 import { PageLayout } from '@/components/page-layout/PageLayout';
 
 export default function Page() {
@@ -17,9 +15,7 @@ export default function Page() {
             onEdit={() => console.log('Edit clicked')}
             lastUpdated="04 April 2024"
         >
-            <>
-                <MajorKanbanBoard />
-            </>
+            <>Development React App</>
         </PageLayout>
     );
 }
