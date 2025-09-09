@@ -71,7 +71,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
                     <div className="text-xs text-[var(--color-text-neutral5)]">Last updated on: {lastUpdated}</div>
                 )}
             </div>
-            <div className="flex-1 overflow-y-hidden !p-4">{children}</div>
+            <div className="flex-1 overflow-x-auto overflow-y-hidden !p-4">{children}</div>
         </div>
     );
 };
