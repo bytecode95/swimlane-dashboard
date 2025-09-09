@@ -7,13 +7,16 @@ import {
     RiArrowDropUpLine,
     RiCalendarLine,
     RiChat3Line,
+    RiContractLeftRightLine,
     RiDashboardLine,
     RiEditLine,
+    RiExpandLeftRightLine,
     RiFlashlightLine,
     RiFolderLine,
     RiInformationLine,
     RiLinkM,
     RiLogoutCircleLine,
+    RiMoreLine,
     RiNotification2Line,
     RiRectangleFill,
     RiSearchLine,
@@ -40,6 +43,9 @@ const iconMap: Record<IconName, ComponentType<IconProps>> = {
     FlashLight: RiFlashlightLine,
     Links: RiLinkM,
     Rectangle: RiRectangleFill,
+    More: RiMoreLine,
+    Expand: RiExpandLeftRightLine,
+    Collapsed: RiContractLeftRightLine,
 };
 
 interface IconComponentProps extends IconProps {

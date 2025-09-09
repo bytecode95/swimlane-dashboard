@@ -7,12 +7,16 @@ interface TaskState {
     tasks: Task[];
     setTasks: (tasks: Task[]) => void;
     moveTask: (taskId: string, newStatus: TaskStatus, position?: number) => void;
+    searchQuery: string;
+    setSearchQuery: (query: string) => void;
+    filteredTasks: Task[];
+    getFilteredTasks: () => Task[];
 }
 
 const STORAGE_KEY = 'swimlane_tasks';
 
 export const useTaskStore = create<TaskState>()(
-    devtools(set => ({
+    devtools((set, get) => ({
         tasks: JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || tasksData,
         setTasks: (tasks: Task[]) => {
             set({ tasks });
@@ -38,6 +42,13 @@ export const useTaskStore = create<TaskState>()(
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(newTasks));
                 return { tasks: newTasks };
             }),
+        searchQuery: '',
+        setSearchQuery: (query: string) => set({ searchQuery: query }),
+        getFilteredTasks: () => {
+            const state = get();
+            const lowerQuery = state.searchQuery.toLowerCase();
+            return state.tasks.filter(t => t.title.toLowerCase().includes(lowerQuery));
+        },
 
     }))
 );

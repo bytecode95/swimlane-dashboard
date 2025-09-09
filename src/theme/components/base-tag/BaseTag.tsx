@@ -25,7 +25,7 @@ const BaseTag: React.FC<BaseTagProps> = ({
     return (
         <span
             className={clsx(
-                'inline-flex items-center !px-2 !py-1 text-xs !font-medium',
+                'inline-flex items-center !px-3 !py-1 text-xs !font-medium',
                 bgClass,
                 textClass,
                 roundedClass

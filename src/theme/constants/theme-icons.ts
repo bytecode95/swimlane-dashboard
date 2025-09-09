@@ -16,6 +16,9 @@ export type IconName =
     | 'FlashLight'
     | 'Links'
     | 'Rectangle'
+    | 'More'
+    | 'Expand'
+    | 'Collapsed';
 
 export interface IconProps {
     size?: number | string;

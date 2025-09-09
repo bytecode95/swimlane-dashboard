@@ -10,9 +10,10 @@ import { usePathname } from 'next/navigation';
 interface Props {
     item: MenuSection;
     depth?: number;
+    collapsed?: boolean;
 }
 
-const SidebarNavItem: React.FC<Props> = ({ item, depth = 0 }) => {
+const SidebarNavItem: React.FC<Props> = ({ item, depth = 0, collapsed }) => {
     const pathname = usePathname();
     const children = item.children ?? [];
     const hasChildren = children.length > 0;
@@ -29,37 +30,44 @@ const SidebarNavItem: React.FC<Props> = ({ item, depth = 0 }) => {
         <div>
             <div
                 className={clsx(
-                    'flex items-center gap-2 cursor-pointer !p-3 transition-all rounded-xl border-2 ',
+                    'flex items-center gap-2 cursor-pointer !p-3 transition-all rounded-xl border-2',
                     depth > 0 && 'pl-6',
-                    isActive ? 'border-[var(--color-text-neutral7)]' : 'border-transparent hover:bg-gray-100'
+                    isActive ? 'border-[var(--color-text-neutral7)]' : 'border-transparent hover:bg-gray-100',
+                    collapsed && 'justify-center'
                 )}
                 onClick={() => hasChildren && setOpen(!open)}
             >
                 {item.icon && React.isValidElement(item.icon) && (
-                    <span className="flex-shrink-0">
+                    <span className="flex-shrink-0 items-center justify-center">
                         {React.cloneElement(item.icon as React.ReactElement<{ color?: string }>, {
                             color: isActive ? 'var(--color-primary)' : 'var(--color-text-neutral4)',
                         })}
                     </span>
                 )}
-                {item.path ? (
-                    <Link href={item.path}>
-                        <span
-                            className={clsx(
-                                isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-neutral4)]'
-                            )}
-                        >
-                            {item.label}
-                        </span>
-                    </Link>
-                ) : (
-                    <span
-                        className={clsx(isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-neutral4)]')}
-                    >
-                        {item.label}
-                    </span>
+                {!collapsed && (
+                    <>
+                        {item.path ? (
+                            <Link href={item.path}>
+                                <span
+                                    className={clsx(
+                                        isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-neutral4)]'
+                                    )}
+                                >
+                                    {item.label}
+                                </span>
+                            </Link>
+                        ) : (
+                            <span
+                                className={clsx(
+                                    isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-neutral4)]'
+                                )}
+                            >
+                                {item.label}
+                            </span>
+                        )}
+                    </>
                 )}
-                {hasChildren && (
+                {hasChildren && !collapsed && (
                     <span className="ml-auto select-none">
                         <BaseIcon
                             name={open ? 'ArrowUp' : 'DownArrow'}
@@ -69,11 +77,11 @@ const SidebarNavItem: React.FC<Props> = ({ item, depth = 0 }) => {
                     </span>
                 )}
             </div>
-            {hasChildren && open && (
+            {hasChildren && open && !collapsed && (
                 <div
                     className={clsx(
-                        '!p-1 rounded-xl !mt-2',
-                        isChildActive ? ' border-1 border-[var(--color-text-neutral7)]' : 'bg-transparent'
+                        'p-1 rounded-xl !mt-2',
+                        isChildActive ? 'border border-[var(--color-text-neutral7)]' : 'bg-transparent'
                     )}
                 >
                     {children.map(child => {

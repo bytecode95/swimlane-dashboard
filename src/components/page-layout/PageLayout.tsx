@@ -13,7 +13,7 @@ interface PageLayoutProps {
     assigned?: { id: string; src: string; alt?: string }[];
     onEdit?: () => void;
     lastUpdated?: string;
-    children?: React.ReactNode; // ✅ allow content below header
+    children?: React.ReactNode;
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
@@ -33,7 +33,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
                 <div className="flex items-center justify-between w-full mb-2">
                     <div className="flex items-center gap-2 flex-wrap">
                         <h1 className="text-2xl font-semibold text-[var(--color-text-neutral1)]">{title}</h1>
-                        <BaseTag {...statusConfig} />
+                        <BaseTag {...statusConfig} roundedClass="rounded-md" />
                     </div>
                 </div>
 

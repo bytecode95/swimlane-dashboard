@@ -7,6 +7,7 @@ import BaseTag from '@/theme/components/base-tag/BaseTag';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import SortableTaskCard from './SortableTaskCard';
 import { useDroppable } from '@dnd-kit/core';
+import { BaseIcon } from '@/theme';
 
 interface TaskColumnProps {
     status: StatusKey;
@@ -19,15 +20,19 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks }) => {
 
     return (
         <div className="flex flex-col w-72 ">
-            <div className="sticky top-0 z-10 !p-2 bg-white flex items-center justify-center">
+            <div className="sticky top-0 z-10 !p-2 bg-white flex items-center justify-between">
                 <BaseTag
                     text={statusConfig.text}
                     bgClass={statusConfig.bgClass}
                     textClass={statusConfig.textClass}
                     roundedClass="rounded-full"
                 />
+                <div className="flex items-center justify-normal gap-x-2">
+                    <BaseIcon name="Add" color="var(--color-text-neutral3)" />
+                    <BaseIcon name="More" color="var(--color-text-neutral3)" />
+                </div>
             </div>
-            <div ref={setNodeRef} className="bg-[var(--color-text-neutral6)] !p-2">
+            <div ref={setNodeRef} className="bg-[var(--color-text-neutral6)] !p-3">
                 {tasks.length > 0 ? (
                     <SortableContext items={tasks.map(t => t.id)} strategy={verticalListSortingStrategy}>
                         <div className="flex flex-col gap-2 p-2">
